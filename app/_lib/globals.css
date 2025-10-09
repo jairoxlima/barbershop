@@ -1,5 +1,4 @@
-@import "tailwindcss/preflight";
-
+/* lib/globals.css */
 @layer base {
   .dark {
     --background: 225 9% 9%;
