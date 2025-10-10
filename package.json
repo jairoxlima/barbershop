@@ -38,6 +38,7 @@
     "eslint": "^9.37.0",
     "eslint-config-next": "15.5.4",
     "eslint-plugin-react": "^7.37.5",
+    "git-commit-msg-linter": "^5.0.8",
     "globals": "^16.4.0",
     "husky": "^9.1.7",
     "lint-staged": "^16.2.3",
