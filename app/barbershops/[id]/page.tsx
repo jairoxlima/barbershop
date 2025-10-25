@@ -4,6 +4,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { db } from "@/app/_lib/prisma"
 import { notFound } from "next/navigation"
+import ServicesItem from "@/app/_components/services.item"
 
 interface BarbershopPageProps {
   params: {
@@ -14,6 +15,9 @@ const BarbershopPage = async ({ params }: BarbershopPageProps) => {
   // Buscar barbearia pelo ID
   const barbershop = await db.barbershop.findUnique({
     where: { id: params.id },
+    include: {
+      services: true,
+    },
   })
 
   // ⚠️ Se não encontrar barbearia, exibe uma página amigável
@@ -67,8 +71,19 @@ const BarbershopPage = async ({ params }: BarbershopPageProps) => {
 
       {/*DESCIÇAP*/}
       <div className="borde-solid space-y-3 border-b p-5">
-        <h1 className="text-xs font-bold uppercase text-gray-400">Sobre nós</h1>
+        <h2 className="text-xs font-bold uppercase text-gray-400">Sobre nós</h2>
         <p className="text-justify text-sm">{barbershop?.description}</p>
+      </div>
+
+      <div className="w-[400px] space-y-3 p-5">
+        <h2 className="mb-3 text-xs font-bold uppercase text-gray-400">
+          Serviços
+        </h2>
+        <div className="space-y-3">
+          {barbershop.services.map((service) => (
+            <ServicesItem key={service.id} service={service} />
+          ))}
+        </div>
       </div>
     </div>
   )
