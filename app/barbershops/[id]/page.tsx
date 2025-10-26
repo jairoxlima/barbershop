@@ -5,6 +5,7 @@ import Link from "next/link"
 import { db } from "@/app/_lib/prisma"
 import { notFound } from "next/navigation"
 import ServicesItem from "@/app/_components/services.item"
+import PhoneItem from "@/app/_components/phone-item"
 
 interface BarbershopPageProps {
   params: {
@@ -55,6 +56,7 @@ const BarbershopPage = async ({ params }: BarbershopPageProps) => {
           <MenuIcon />
         </Button>
       </div>
+
       {/* DADOS */}
       <div className="border-b border-solid p-5">
         <h1 className="mb-3 text-xl font-bold">{barbershop.name}</h1>
@@ -63,6 +65,7 @@ const BarbershopPage = async ({ params }: BarbershopPageProps) => {
           <p className="text-sm text-gray-400">{barbershop?.address}</p>
         </div>
 
+        {/*TÍTULO */}
         <div className="flex items-center gap-2">
           <StarIcon className="text-primary" size={18} />
           <p className="text-sm text-gray-400">5,0 499 avaliações</p>
@@ -74,16 +77,22 @@ const BarbershopPage = async ({ params }: BarbershopPageProps) => {
         <h2 className="text-xs font-bold uppercase text-gray-400">Sobre nós</h2>
         <p className="text-justify text-sm">{barbershop?.description}</p>
       </div>
-
+      {/*SERVIÇOS */}
       <div className="w-[400px] space-y-3 p-5">
         <h2 className="mb-3 text-xs font-bold uppercase text-gray-400">
           Serviços
         </h2>
-        <div className="space-y-3">
+        <div className="space-y-3 border-b border-solid p-5">
           {barbershop.services.map((service) => (
             <ServicesItem key={service.id} service={service} />
           ))}
         </div>
+      </div>
+      {/*CONTATO*/}
+      <div className="space-y-3 p-5">
+        {barbershop.phones.map((phone) => (
+          <PhoneItem key={phone} phone={phone} />
+        ))}
       </div>
     </div>
   )
