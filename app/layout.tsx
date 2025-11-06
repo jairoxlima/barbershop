@@ -1,8 +1,9 @@
 import type { Metadata } from "next"
-
 import "./globals.css"
 import { Toaster } from "sonner"
 import Footer from "./_components/footer"
+// import { SessionProvider } from "next-auth/react"
+import AuthProvider from "./_provides/auth"
 
 export const metadata: Metadata = {
   title: "FSW Barber",
@@ -17,11 +18,13 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" className="dark">
       <body className="global-styles">
-        {children}
+        <AuthProvider>
+          {children}
 
-        <Toaster />
+          <Toaster />
 
-        <Footer />
+          <Footer />
+        </AuthProvider>
       </body>
     </html>
   )
