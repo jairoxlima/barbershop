@@ -59,11 +59,11 @@
   }
 
   html {
-    @apply h-full scroll-smooth;
+    @apply h-full;
   }
 
   body {
-    @apply bg-background text-foreground h-full;
+    @apply h-full bg-background text-foreground;
     font-family: "Inter", sans-serif;
   }
 
