@@ -64,7 +64,7 @@ const BarbershopPage = async ({ params }: BarbershopPageProps) => {
         </Sheet>
       </div>
 
-      {/* DADOS */}
+      {/* TITULO */}
       <div className="border-b border-solid p-5">
         <h1 className="mb-3 text-xl font-bold">{barbershop.name}</h1>
         <div className="flex items-center gap-2">
@@ -80,7 +80,7 @@ const BarbershopPage = async ({ params }: BarbershopPageProps) => {
       </div>
 
       {/*DESCIÇAP*/}
-      <div className="borde-solid space-y-3 border-b p-5">
+      <div className="borde-solid space-y-2 border-b p-5">
         <h2 className="text-xs font-bold uppercase text-gray-400">Sobre nós</h2>
         <p className="text-justify text-sm">{barbershop?.description}</p>
       </div>
@@ -91,7 +91,11 @@ const BarbershopPage = async ({ params }: BarbershopPageProps) => {
         </h2>
         <div className="space-y-3 border-b border-solid p-5">
           {barbershop.services.map((service) => (
-            <ServicesItem key={service.id} service={service} />
+            <ServicesItem
+              key={service.id}
+              barbershop={barbershop}
+              service={service}
+            />
           ))}
         </div>
       </div>
